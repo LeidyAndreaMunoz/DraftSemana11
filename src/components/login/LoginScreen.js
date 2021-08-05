@@ -24,7 +24,8 @@ export const LoginScreen = ({ history }) => {
         
     }
     const toRegister = (e) => {
-        e.preventDefault(); 
+        e.preventDefault();
+        history.replace('/register');
         console.log('Hiciste click');
     }
     const formik = useFormik({

@@ -37,7 +37,7 @@ export const RegisterScreen = ({ history }) => {
      
     return (
             <div className="loginContainer">
-                <h3>Registra tus datos </h3>
+                <h3>Registra tus datosssssssssssssssssssssssssss </h3>
                 <form className="formulario" onSubmit={ formik . handleSubmit , handleLogin }>
                     <p>
                         <label>Usuario</label>

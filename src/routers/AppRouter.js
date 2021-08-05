@@ -9,6 +9,7 @@ import { PrivateRoute } from './PrivateRoute';
 import { PublicRoute } from './PublicRoute';
 
 import { LoginScreen } from '../components/login/LoginScreen';
+import { RegisterScreen } from '../components/register/RegisterScreen';
 import { DashboardRoutes } from './DashboardRoutes';
 
 
@@ -24,6 +25,12 @@ export const AppRouter = () => {
                         exact 
                         path="/login" 
                         component={ LoginScreen } 
+                        isAuthenticated={ user.logged }
+                    />
+                    <PublicRoute 
+                        exact 
+                        path="/register" 
+                        component={ RegisterScreen } 
                         isAuthenticated={ user.logged }
                     />
                     
