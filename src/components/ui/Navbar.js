@@ -66,6 +66,14 @@ export const Navbar = () => {
                     <span className="nav-item nav-link text-info"> 
                         { name }
                     </span>
+                    <NavLink 
+                        activeClassName="active"
+                        className="nav-item nav-link" 
+                        exact
+                        to="/contacto"
+                    >
+                        Contáctanos
+                    </NavLink>
 
                     <button 
                         className="nav-item nav-link btn"

@@ -3,10 +3,8 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { AuthContext } from '../../auth/AuthContext';
 import { types } from '../../types/types';
-import { Link } from "react-router-dom";
-import './LoginScreen.css'
 
-export const LoginScreen = ({ history }) => {
+export const RegisterScreen = ({ history }) => {
 
     const { dispatch } = useContext( AuthContext );
     const handleLogin = () => {
@@ -22,10 +20,6 @@ export const LoginScreen = ({ history }) => {
 
         history.replace( lastPath );
         
-    }
-    const toRegister = (e) => {
-        e.preventDefault(); 
-        console.log('Hiciste click');
     }
     const formik = useFormik({
         initialValues: {
@@ -43,8 +37,8 @@ export const LoginScreen = ({ history }) => {
      
     return (
             <div className="loginContainer">
-                <h3>Inicia Sesión</h3>
-                <form className="formulario">
+                <h3>Registra tus datos </h3>
+                <form className="formulario" onSubmit={ formik . handleSubmit , handleLogin }>
                     <p>
                         <label>Usuario</label>
                         <input type="text" name="nombre"></input>
@@ -54,12 +48,11 @@ export const LoginScreen = ({ history }) => {
                         <input type="password" name="Contraseña"></input>
                     </p>
                     <p className="full">
-                        <button type="submit" className="boton-enviar" onClick={ handleLogin }>Ingresar</button>
-                    </p>
-                    <p className="full">
-                        <button type="submit" className="boton-enviar" onClick={ toRegister }>Regístrate</button>
+                        <button type="submit" className="boton-enviar">Regístrate</button>
                     </p>
                 </form>
             </div>
     )  
 }
+
+
