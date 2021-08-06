@@ -4,7 +4,7 @@ import  { GetCountriesAll }  from '../../selectors/getCountriesAll';
 import { Search } from './Search'
 import './countries.css'
 
- const MarvelScreen = () => {
+export const HomePage = () => {
 
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false)
@@ -12,12 +12,10 @@ import './countries.css'
     const getData = (search) => {
         setLoading(true)
         let API_URL = 'https://restcountries.eu/rest/v2/all'
-        if (search) API_URL =  `https://restcountries.eu/rest/v2/name/${search}` 
-        // console.log("🚀 ~ file: getCountriesAll.js ~ line 17 ~ useEffect ~ API_URL", API_URL)
+        if (search) API_URL =  `https://restcountries.eu/rest/v2/name/${search}`
         fetch(API_URL)
         .then((resp) => resp.json())
         .then((response) => {
-            console.log('response', response);
             setData(response)
             setLoading(false)
         })
@@ -41,4 +39,4 @@ import './countries.css'
 }
 
 
-export default MarvelScreen
+export default HomePage

@@ -12,11 +12,9 @@ import { Search } from './Search'
         setLoading(true)
         let API_URL = 'https://restcountries.eu/rest/v2/all'
         if (search) API_URL =  `https://restcountries.eu/rest/v2/name/${search}` 
-        // console.log("🚀 ~ file: getCountriesAll.js ~ line 17 ~ useEffect ~ API_URL", API_URL)
         fetch(API_URL)
         .then((resp) => resp.json())
         .then((response) => {
-            console.log('response', response);
             setData(response)
             setLoading(false)
         })

@@ -5,8 +5,6 @@ import './coutriesList.css'
 
 export const HeroList = (props) => {
     const {data} = props
-    // const countries = useMemo(() => GetCountriesAll(search), [ search ] );
-    // console.log("🚀 ~ file: HeroList.js ~ line 8 ~ HeroList ~ countries", countries)
     return (
         <div className="card-columns animate__animated animate__fadeIn">
 

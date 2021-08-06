@@ -10,12 +10,10 @@ export const HeroScreen = ({ history }) => {
         fetch(`https://restcountries.eu/rest/v2/name/${name}` )
         .then((resp) => resp.json())
         .then((response) => {
-            console.log('response', response);
             setCountry(response[0])
         })
     }, [])
 
-    console.log('country', country);
 
     if ( !country ) {
         return <Redirect to="/" />;
