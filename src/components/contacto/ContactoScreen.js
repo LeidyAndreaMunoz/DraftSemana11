@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, } from "react";
 import './ContactoScreen.css';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
@@ -12,7 +12,7 @@ export const ContactoScreen = () => {
     const formSent = (e) => {
         e.preventDefault();
         setOpen(true);
-    } 
+    }
     return (
             <div className="contactContainer">
                 <h3>Comunícate con nosotros</h3>
@@ -24,7 +24,7 @@ export const ContactoScreen = () => {
                 </p>
                 <p>
                     <label>Correo electrónico</label>
-                    <input type="text" name="email"></input>
+                    <input type="email" name="email"></input>
                 </p>
                 <p>
                     <label>Asunto</label>
