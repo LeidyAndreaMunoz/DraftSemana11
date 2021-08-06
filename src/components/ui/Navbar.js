@@ -1,13 +1,23 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState} from 'react';
 import { Link, NavLink, useHistory } from 'react-router-dom';
 import { AuthContext } from '../../auth/AuthContext';
 import { types } from '../../types/types';
+import './NavBar.css';
+import Logo from '../../assets/Logo.png';
+
 
 export const Navbar = () => {
-
+    
     const { user:{ name }, dispatch } = useContext(AuthContext);
+    console.log("🚀 ~ file: Navbar.js ~ line 12 ~ Navbar ~ AuthContext", AuthContext)
     const history = useHistory();
 
+    
+    const[show,setShow] = useState(false);
+    useEffect (window.onscroll = () => {
+        setShow(window.pageYOffset === 0 ? false : true);
+    }, [])
+    
     const handleLogout = () => {
 
         history.replace('/login');
@@ -19,13 +29,12 @@ export const Navbar = () => {
 
 
     return (
-        <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
+        <nav  className={show ? "navbar navbar-expand-sm navbar-dark bg-dark stivkyHeader" : 'navbar navbar-expand-sm navbar-dark bg-dark'}>
             
-            <Link 
-                className="navbar-brand" 
+            <Link className="logoContainer" 
                 to="/"
             >
-                Asociaciones
+                <img src={Logo}></img>
             </Link>
 
             <div className="navbar-collapse">
@@ -37,25 +46,15 @@ export const Navbar = () => {
                         exact
                         to="/marvel"
                     >
-                        Marvel
+                        Inicio
                     </NavLink>
-
-                    <NavLink 
-                        activeClassName="active"
-                        className="nav-item nav-link" 
-                        exact
-                        to="/dc"
-                    >
-                        DC
-                    </NavLink>
-                    
                     <NavLink 
                         activeClassName="active"
                         className="nav-item nav-link" 
                         exact
                         to="/search"
                     >
-                        Search
+                        Buscar
                     </NavLink>
                 </div>
             </div>
@@ -66,12 +65,19 @@ export const Navbar = () => {
                     <span className="nav-item nav-link text-info"> 
                         { name }
                     </span>
-
+                    <NavLink 
+                        activeClassName="active"
+                        className="nav-item nav-link" 
+                        exact
+                        to="/about"
+                    >
+                        Sobre me
+                    </NavLink>
                     <button 
                         className="nav-item nav-link btn"
                         onClick={ handleLogout }
                     > 
-                        Logout
+                        Salir
                     </button>
                 </ul>
             </div>
