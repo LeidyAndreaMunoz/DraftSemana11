@@ -1,22 +1,25 @@
 import React, { useMemo } from 'react';
-import { getHeroesByPublisher } from '../../selectors/getHeroesByPublisher';
-import { HeroCard } from './HeroCard';
+import  GetCountriesAll  from '../../selectors/getCountriesAll';
+import { CountryCard } from './HeroCard';
+import './coutriesList.css'
 
-export const HeroList = ({ publisher }) => {
-
-    const heroes = useMemo(() => getHeroesByPublisher( publisher ), [ publisher ] );
-
+export const HeroList = (props) => {
+    const {data} = props
     return (
         <div className="card-columns animate__animated animate__fadeIn">
-           {
-               heroes.map( hero => (
-                   <HeroCard 
-                        key={ hero.id }
-                        { ...hero }
+
+        {data.length > 0 ? (
+            data?.map( country => (
+                <CountryCard 
+                        key={ country.numericCode }
+                        { ...country }
                     />
-                   
-               ))
-           } 
+                
+            ))
+
+        ) :        
+        <h1 className="loading">No hay informacion relacionada</h1>}
+
         </div>
     )
 }

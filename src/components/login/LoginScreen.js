@@ -14,25 +14,36 @@ export const LoginScreen = ({ history }) => {
     const handleLogin = (formData) => {
 
         const lastPath = localStorage.getItem('lastPath') || '/';
-
-        const actualUsers = JSON.parse(localStorage.getItem('users'))
         
-        const existUser = actualUsers.find((user) => user.email === formData.email && user.password === formData.password)
-        if (existUser) {
-            dispatch({
-                type: types.login,
-                payload: existUser
-            });
-        } else {
+        const actualUsers = JSON.parse(localStorage.getItem('users'))
+        if (actualUsers === null) {
             Swal.fire({
                 position: 'top-end',
                 icon: 'warning',
-                title: 'Usuario no registrado',
+                title: 'No existe ningun usurio, ¿Desea crear uno?',
                 showCancelButton: true,
                 confirmButtonColor: '#242330',
                 confirmButtonText: '<a href="/register">Regístrate</a>'
               })
+        } else {
+            const existUser = actualUsers.find((user) => user.email === formData.email && user.password === formData.password)
+            if (existUser) {
+                dispatch({
+                    type: types.login,
+                    payload: existUser
+                });
+            } else {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'warning',
+                    title: 'Usuario no registrado',
+                    showCancelButton: true,
+                    confirmButtonColor: '#242330',
+                    confirmButtonText: '<a href="/register">Regístrate</a>'
+                  })
+            }
         }
+
 
 
         history.replace( lastPath );
@@ -52,7 +63,6 @@ export const LoginScreen = ({ history }) => {
             password: Yup.string().required("Campo requerido"),
         }),
         onSubmit: (formData) => {
-            console.log(formData);
             handleLogin(formData)
         },
     })

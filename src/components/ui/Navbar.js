@@ -9,7 +9,6 @@ import Logo from '../../assets/Logo.png';
 export const Navbar = () => {
     
     const { user:{ name }, dispatch } = useContext(AuthContext);
-    console.log("🚀 ~ file: Navbar.js ~ line 12 ~ Navbar ~ AuthContext", AuthContext)
     const history = useHistory();
 
     

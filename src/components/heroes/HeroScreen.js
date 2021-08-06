@@ -1,14 +1,21 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, Redirect } from 'react-router-dom';
-import { getHeroById } from '../../selectors/getHeroById';
-
+import './coutriesList.css'
 export const HeroScreen = ({ history }) => {
 
-    const { heroeId } = useParams();
+    const { name } = useParams();
+    const [country, setCountry] = useState({})
 
-    const hero = useMemo(() => getHeroById( heroeId ), [ heroeId ]);
+    useEffect(() => {
+        fetch(`https://restcountries.eu/rest/v2/name/${name}` )
+        .then((resp) => resp.json())
+        .then((response) => {
+            setCountry(response[0])
+        })
+    }, [])
 
-    if ( !hero ) {
+
+    if ( !country ) {
         return <Redirect to="/" />;
     }
 
@@ -22,37 +29,42 @@ export const HeroScreen = ({ history }) => {
 
     }
 
+
     const {
-        superhero,
-        publisher,
-        alter_ego,
-        first_appearance,
+        region,
+        capital,
+        nativeName,
+        population,
         characters,
-    } = hero;
+        flag,
+        subregion,
+    } = country;
     
     return (
         <div className="row mt-5">
-            <div className="col-4">
+            <div className="col-12 loading">
                 <img 
-                    src={ `../assets/heroes/${ heroeId }.jpg` }
-                    alt={ superhero }
+                    src={ flag}
+                    alt={ flag }
+
                     className="img-thumbnail animate__animated animate__fadeInLeft"
                 />
             </div>
-
-            <div className="col-8 animate__animated animate__fadeIn">
-                <h3> { superhero } </h3>
+            <div className="col-12 animate__animated animate__fadeIn">
+                <h3> { name } </h3>
                 <ul className="list-group list-group-flush">
-                    <li className="list-group-item"> <b> Alter ego: </b> { alter_ego } </li>
-                    <li className="list-group-item"> <b> Publisher: </b> { publisher } </li>
-                    <li className="list-group-item"> <b> First appearance: </b> { first_appearance } </li>
-                </ul>
+                    <li className="list-group-item"> <b> Region: </b> { region } </li>
+                    <li className="list-group-item"> <b> Capital: </b> { capital } </li>
+                    <li className="list-group-item"> <b> Poblacion: </b> { population } </li>
+                    <li className="list-group-item"> <b> Nombre nativo: </b> { nativeName } </li>
+                    <li className="list-group-item"> <b> Sub region </b> { subregion } </li>
+                    
 
-                <h5> Characters </h5>
-                <p> { characters } </p>
+                </ul>
+                <br />
 
                 <button 
-                    className="btn btn-outline-info"
+                    className="btn btn-outline-info col-12  "
                     onClick={ handleReturn }
                 >
                     Return

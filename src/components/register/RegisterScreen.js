@@ -15,7 +15,6 @@ export const RegisterScreen = ({ history }) => {
             localStorage.setItem('users', JSON.stringify(actualUsers) )
             
         } else {
-            console.log('formData', formData);
             localStorage.setItem('users', JSON.stringify([formData]))
         }
         const lastPath = localStorage.getItem('lastPath') || '/';
@@ -45,8 +44,6 @@ export const RegisterScreen = ({ history }) => {
             repeatPassword: Yup.string().required("Campo requerido").oneOf([Yup.ref("password")], "Las contraseñas no coinciden")
         }),
         onSubmit: (formData) => {
-            console.log(formData);
- 
             handleLogin(formData);
         },
     })

@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, } from "react";
 import './ContactoScreen.css';
 import { useFormik } from 'formik';
 import { Container, Form, Button } from 'semantic-ui-react';
@@ -29,7 +29,6 @@ export const ContactoScreen = () => {
             textarea: Yup.string().required("Campo requerido").max(500)
         }),
         onSubmit: (formData) => {
-            console.log(formData);
             formSent();
         },
     })
