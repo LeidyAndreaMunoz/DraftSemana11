@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import { HeroList } from '../heroes/HeroList'
 import { Search } from './Search'
 
-export const MarvelScreen = () => {
+export const HomePage = () => {
 
     
     const [search, setSearch] = useState('')
